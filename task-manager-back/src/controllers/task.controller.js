@@ -2,6 +2,7 @@ const TaskSchema = require("../models/task.model");
 
 class TasksController {
     createTask = async (req, res) => {
+        console.log(req.body);
         res.status(500).json("Not Implemented Error");
     }
 
