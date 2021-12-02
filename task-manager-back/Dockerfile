@@ -4,9 +4,11 @@ WORKDIR /usr/src/task-manager-backend
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install -g nodemon
 
 COPY  ./ ./
+
+RUN npm install
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
