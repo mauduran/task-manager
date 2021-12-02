@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 let TaskSchema = mongoose.Schema({
     user: {
         type: String, 
+        // type: mongoose.Schema.Types.ObjectId,
         require: true,
     },
     title: {
@@ -22,10 +23,10 @@ let TaskSchema = mongoose.Schema({
         require: true,
     },
     comments: {
-        type: String,
-        default: '',
+        type: [String],
+        default: [],
     },
-    personResponsible: {
+    responsiblePerson: {
         type: String,
         default: '',
     },
