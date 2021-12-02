@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
+const taskConstants = require('../constants/task.constants');
 
 let TaskSchema = mongoose.Schema({
     user: {
         type: String, 
-        // type: mongoose.Schema.Types.ObjectId,
-        require: true,
+        type: mongoose.Schema.Types.ObjectId,
     },
     title: {
         type: String,
@@ -17,6 +17,7 @@ let TaskSchema = mongoose.Schema({
     status: {
         type: String,
         require: true,
+        enum: Object.values(taskConstants.STATUS_TYPES),
     },
     dateOfDelivery: {
         type: Date,
