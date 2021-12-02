@@ -21,7 +21,7 @@ services:
     environment: 
       PORT: 3001
       MONGODB_URI: mongodb://mongo:27017/
-      TOKEN_SECRET: Sup3rh4rd2GuessS3cret321
+      TOKEN_SECRET: Placeholder4Sup3rh4rd2GuessS3cret321
     volumes:
       - ./task-manager-back:/usr/src/task-manager-backend
     ports:

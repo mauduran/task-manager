@@ -1,10 +1,36 @@
 
-GET http://localhost:3001/api/test
+GET http://localhost:3001/api/user
 
-###
-POST http://localhost:3001/api/test
+### Create User
+POST http://localhost:3001/api/user
 Content-Type: application/json
 
 {
-    "value": "count"
+    "name": "Mauricio Duran",
+    "username": "mduran",
+    "password": "1234100"
+}
+
+### User Login
+POST http://localhost:3001/api/user/login
+Content-Type: application/json
+
+{
+    "username": "mduran",
+    "password": "1234100"
+}
+
+
+###
+POST http://localhost:3001/api/task
+Content-Type: application/json
+
+{
+    "user": "Mau",
+    "title": "Terminar front",
+    "description": "Desarrollar UI y funcionalidad",
+    "dateOfDelivery": "2021-12-02T17:39:36.610Z",
+    "comments": ["Todo bien"],
+    "responsiblePerson": "Mau",
+    "tags": ["interview", "nextLine"]
 }
