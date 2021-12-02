@@ -1,0 +1,10 @@
+
+GET http://localhost:3001/api/test
+
+###
+POST http://localhost:3001/api/test
+Content-Type: application/json
+
+{
+    "value": "count"
+}

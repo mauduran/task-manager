@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  frontend: 
+    container_name: frontend
+    restart: always
+    build: ./task-manager-front
+    command: npm start
+    working_dir: /usr/src/task-manager-frontend
+    ports:
+      - "80:3000"
+    links:
+      - backend
+
+  backend:
+    container_name: backend
+    restart: always
+    build: ./task-manager-back
+    command: npm run dev
+    working_dir: /usr/src/task-manager-backend
+    environment: 
+      PORT: 3001
+      MONGODB_URI: mongodb://mongo:27017/
+    volumes:
+      - ./task-manager-back:/usr/src/task-manager-backend
+    ports:
+      - "3001:3001"
+    links:
+      - mongo
+    
+  mongo:
+    container_name: mongodb
+    image: mongo
+    restart: always
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: examplePassword
+    ports:
+        - "27017:27017"
