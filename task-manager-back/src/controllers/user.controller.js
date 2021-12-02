@@ -26,18 +26,19 @@ class UserController {
                 message: "User created",
             });
         } catch (error) {
+            let message = "Unable to create user";
+            let statusCode = 400;
+
             if (error.code === 11000) {
-                return res.status(409).json({
-                    success: false,
-                    message: "User already exists!",
-                });
+                statusCode = 409;
+                message = "User already exists!";
             }
-            return res.status(400).json({
+
+            return res.status(statusCode).json({
                 success: false,
-                message: "Unable to create user",
+                message:message,
             });
         }
-
     }
 
     login = async (req, res) => {
@@ -52,8 +53,6 @@ class UserController {
             if (!userDoc) {
                 throw new Error("User does not exist");
             }
-
-            console.log(userDoc);
 
             const validCredentials = bcrypt.compareSync(password, userDoc.hash);
 
@@ -84,7 +83,7 @@ class UserController {
             let users = await UserSchema.find();
             res.status(200).json({
                 success: true,
-                users: users.map(user => ({ name: user.name, username: user.username })),
+                users: users.map(user => ({ name: user.name, username: user.username, id: user._id })),
             })
         } catch (error) {
             res.status(400).json({
