@@ -20,17 +20,36 @@ Content-Type: application/json
     "password": "1234100"
 }
 
+###
+GET  http://localhost:3001/api/task
+Content-Type: application/json
+Authorization: 
 
 ###
 POST http://localhost:3001/api/task
 Content-Type: application/json
+Authorization: 
 
 {
-    "user": "Mau",
-    "title": "Terminar front",
-    "description": "Desarrollar UI y funcionalidad",
+    "title": "documentar backend",
+    "description": "Documentación del back con swagger",
     "dateOfDelivery": "2021-12-02T17:39:36.610Z",
     "comments": ["Todo bien"],
     "responsiblePerson": "Mau",
     "tags": ["interview", "nextLine"]
 }
+
+###
+PUT http://localhost:3001/api/task/61a9375038ba966224ad30d6
+Content-Type: application/json
+Authorization: 
+
+{
+    "title": "Terminar frontend",
+    "tags": ["a", "b", "c"]
+}
+
+###
+DELETE   http://localhost:3001/api/task/61a93986b989a6d4967be31a
+Content-Type: application/json
+Authorization: 
