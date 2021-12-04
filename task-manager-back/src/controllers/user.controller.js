@@ -68,7 +68,7 @@ class UserController {
                 username,
             }, process.env.TOKEN_SECRET);
 
-            res.json({ success: true, token });
+            res.json({ success: true, token, username });
         } catch (error) {
             console.log(error);
             res.status(400).json({

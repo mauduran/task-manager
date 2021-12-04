@@ -33,6 +33,7 @@ class TasksController {
                 description: task.description,
                 tags: task.tags,
                 status: task.status,
+                dateOfDelivery: task.dateOfDelivery
             }));
 
             return res.status(200).json({
