@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     isFetching: false,
     isUpdating: false,
     isDeleting: false,
+    fetchError: false,
     errorMessage: null,
 }
 
@@ -28,7 +29,8 @@ const taskReducer = (state = INITIAL_STATE, action = {}) => {
             return { ...state, isDeleting: true, errorMessage: null }
 
         case TaskActionTypes.DELETE_TASK_SUCCESS:
-            return { ...state, isDeleting: false, errorMessage: null }
+            let tasks = state.tasks.filter((task) => task.id !== action.payload)
+            return { ...state, tasks, isDeleting: false, errorMessage: null }
 
         case TaskActionTypes.DELETE_TASK_FAILURE:
             return { ...state, isDeleting: false, errorMessage: action.payload }
@@ -48,7 +50,7 @@ const taskReducer = (state = INITIAL_STATE, action = {}) => {
 
         case TaskActionTypes.FETCH_TASKS_FAILURE:
         case TaskActionTypes.FETCH_TASK_FAILURE:
-            return { ...state, isFetching: false, errorMessage: action.payload }
+            return { ...state, isFetching: false, errorMessage: action.payload, fetchError: true }
 
         case TaskActionTypes.FETCH_TASKS_SUCCESS:
             return { ...state, isFetching: false, errorMessage: null, tasks: action.payload }

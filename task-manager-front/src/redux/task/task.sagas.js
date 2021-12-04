@@ -14,6 +14,7 @@ import {
     updateTasksSuccess,
     updateTasksFailure,
 } from './task.actions';
+import { openErrorNotificationStart } from '../notification/notification.actions';
 
 export function* fetchUserTasks() {
     try {
@@ -34,6 +35,7 @@ export function* fetchUserTasks() {
         yield put(fetchTasksSuccess(responseBody.tasks));
 
     } catch (error) {
+        yield put(openErrorNotificationStart("Unable to get tasks"))
         yield put(fetchTasksFailure(error));
     }
 }
@@ -100,14 +102,14 @@ export function* deleteTask({ payload: { id } }) {
             throw new Error(responseBody.message);
         }
 
-        yield put(deleteTasksSuccess(responseBody));
+        yield put(deleteTasksSuccess(id));
 
     } catch (error) {
         yield put(deleteTasksFailure(error));
     }
 }
 
-export function* updateTask({ payload: { id, task } }) {
+export function* updateTask({ payload: { id, task, cbSuccess } }) {
     try {
         const response = yield fetch(`/task/${id}`, {
             method: 'PUT',
@@ -122,6 +124,7 @@ export function* updateTask({ payload: { id, task } }) {
         if (!responseBody.success) {
             throw new Error(responseBody.message);
         }
+        yield call(cbSuccess);
 
         yield put(updateTasksSuccess(responseBody));
 

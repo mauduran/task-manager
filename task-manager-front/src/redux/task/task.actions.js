@@ -44,14 +44,14 @@ export const fetchTasksFailure = (error) => ({
     payload: error,
 });
 
-export const updateTaskStart = (id, task) => ({
+export const updateTaskStart = (id, task, cbSuccess) => ({
     type: TaskActionTypes.UPDATE_TASK_START,
-    payload: { id, task },
+    payload: { id, task, cbSuccess },
 })
 
 export const updateTasksSuccess = (response) => ({
     type: TaskActionTypes.UPDATE_TASK_SUCCESS,
-    payload: response
+    payload: response,
 });
 
 export const updateTasksFailure = (error) => ({
@@ -64,12 +64,17 @@ export const deleteTasksStart = (id) => ({
     payload: { id },
 })
 
-export const deleteTasksSuccess = (response) => ({
+export const deleteTasksSuccess = (id) => ({
     type: TaskActionTypes.DELETE_TASK_SUCCESS,
-    payload: response
+    payload: id,
 });
 
 export const deleteTasksFailure = (error) => ({
+    type: TaskActionTypes.DELETE_TASK_FAILURE,
+    payload: error,
+});
+
+export const completeTaskStart = (error) => ({
     type: TaskActionTypes.DELETE_TASK_FAILURE,
     payload: error,
 });

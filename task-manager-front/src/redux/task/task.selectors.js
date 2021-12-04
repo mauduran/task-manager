@@ -36,3 +36,8 @@ export const selectErrorMessage = createSelector(
     selectTaskState,
     (task) => task.errorMessage
 );
+
+export const selectFetchError = createSelector(
+    selectTaskState,
+    (task) => task.fetchError,
+);
