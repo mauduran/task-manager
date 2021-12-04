@@ -7,10 +7,11 @@ import { useTaskItemStyles } from './TaskItem.styles';
 import { connect } from 'react-redux';
 import { deleteTasksStart, updateTaskStart } from '../../redux/task/task.actions';
 import { STATUS_TYPES } from '../../constants/task.constants';
+import { openErrorNotificationStart, openSuccessNotificationStart } from '../../redux/notification/notification.actions';
 
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" };
 
-const TaskItem = ({ task, updateTask, deleteTask }) => {
+const TaskItem = ({ task, updateTask, deleteTask, openSuccessNotification }) => {
     const [status, setStatus] = useState(null);
     const classes = useTaskItemStyles();
     const navigate = useNavigate();
@@ -19,60 +20,73 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
         navigate(`/task/${task.id}`);
     }
 
-    const completeTask = () => {
-        updateTask(task.id, { status: STATUS_TYPES.COMPLETED });
-        setStatus(STATUS_TYPES.COMPLETED);
+    const handleCompleteTask = () => {
+        updateTask(task.id, { status: STATUS_TYPES.COMPLETED }, () => {
+            openSuccessNotification("Task completed!");
+            setStatus(STATUS_TYPES.COMPLETED);
+        });
     }
 
-    const uncompleteTask = () => {
-        updateTask(task.id, { status: STATUS_TYPES.PENDING });
-        setStatus(STATUS_TYPES.PENDING);
+    const handleUncompleteTask = () => {
+        updateTask(task.id, { status: STATUS_TYPES.PENDING }, () => {
+            openSuccessNotification("Task not completed anymore");
+            setStatus(STATUS_TYPES.PENDING);
+        });
     }
 
     const handleDeleteTask = () => {
+
         // eslint-disable-next-line no-restricted-globals
         const sureToDelete = confirm("Do you really want to delete this task?");
 
-        if(sureToDelete)
+        if (sureToDelete)
             deleteTask(task.id)
     }
 
     return (
         <Paper key={task.id} elevation={16} className={classes.taskItemCard} >
-            <div className={classes.taskItemInfo} onClick={goToTaskDetail}>
-                <h3 className={classes.taskTitle}>{task.title}</h3>
+            <h3 className={classes.taskTitle} onClick={goToTaskDetail}>{task.title}</h3>
 
-                <span className={classes.taskDate}>{new Date(task.dateOfDelivery).toLocaleString("en-US", options)}</span>
+            <div className={classes.taskItemInfo}>
 
-                <p className={classes.taskItemDescription}>{task.description}</p>
+                <div className={classes.taskItemInfoDetail} onClick={goToTaskDetail}>
 
-                <Stack direction="row" spacing={1}>
-                    {task.tags.map((tag) => <Chip key={tag} label={tag} color="primary" />)}
-                </Stack>
-            </div>
-            <div className={classes.icons}>
-                {
-                    (status === STATUS_TYPES.PENDING || (!status && task.status === STATUS_TYPES.PENDING)) ?
-                        <Fab variant="extended" aria-label="complete" onClick={completeTask}>
-                            Set as complete
-                        </Fab> :
-                        <Fab color="primary" aria-label="un complete" onClick={uncompleteTask}>
-                            <CheckIcon />
+                    <span className={classes.taskDate}>{new Date(task.dateOfDelivery).toLocaleString("en-US", options)}</span>
+
+                    <p className={classes.taskItemDescription}>{task.description}</p>
+
+                    <div className={classes.tagList}>
+                        {task.tags.map((tag) => <Chip key={tag} label={tag} color="primary" sx={{marginBottom: "5px", marginLeft: "5px"}}/>)}
+                    </div>
+                </div>
+                <div className={classes.icons}>
+                    <Stack direction="column" spacing={1}>
+                        {
+                            (status === STATUS_TYPES.PENDING || (!status && task.status === STATUS_TYPES.PENDING)) ?
+                                <Fab variant="extended" aria-label="complete" onClick={handleCompleteTask}>
+                                    Set as complete
+                                </Fab> :
+                                <Fab color="primary" aria-label="un complete" onClick={handleUncompleteTask}>
+                                    <CheckIcon />
+                                </Fab>
+                        }
+                        <Fab color="secondary" variant="extended" aria-label="add" onClick={handleDeleteTask}>
+                            <CloseIcon sx={{ mr: 1 }} />
+                            Delete
                         </Fab>
-
-                }
-                <Fab color="secondary" variant="extended" aria-label="add" onClick={handleDeleteTask}>
-                    <CloseIcon sx={{ mr: 1 }} />
-                    Delete
-                </Fab>
+                    </Stack>
+                </div>
             </div>
+
         </Paper>
     )
 }
 
 const mapDispatchToProps = dispatch => ({
-    updateTask: (id, updatedTaskValues) => dispatch(updateTaskStart(id, updatedTaskValues)),
+    updateTask: (id, updatedTaskValues, cbSuccess) => dispatch(updateTaskStart(id, updatedTaskValues, cbSuccess)),
     deleteTask: (id) => dispatch(deleteTasksStart(id)),
+    openSuccessNotification: (message) => dispatch(openSuccessNotificationStart(message)),
+    openErrorNotification: (message) => dispatch(openErrorNotificationStart(message))
 })
 
 export default connect(null, mapDispatchToProps)(TaskItem);
