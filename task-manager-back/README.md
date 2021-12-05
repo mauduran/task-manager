@@ -31,6 +31,23 @@ REST API created in NodeJs to be used as a means of task managements:
   - **Body**: `{username: string, password: string}`
   - **Returns**:
     - 200: When the user was created. Response: `{ success: true, token: Authorization Token, username: Username}` 
-    - 400: When credentials are invalid or any other error occurs. `{success: false, message:'Unable to create users'}`
+    - 400: When credentials are invalid or any other error occurs. `{success: false, message:'Unable to create user'}`
 
+## Task
 
+### `/task`:
+- POST: 
+  - **What it does**: Creates a new task
+  - **Requires Authorization Token**: YES
+  - **Body**: 
+  `{ 
+      title: string, 
+      description: string, 
+      dateOfDelivery: Date, 
+      commments: string (Optional), 
+      responsiblePerson: string (Optional),
+      tags: string[] (Optional)
+    }`
+  - **Returns**:
+    - 201: When the task was created. Response: `{ success: true, message: "Task created"}` 
+    - 400: With any error such as missing fields. Response: `{success: false, message:'Unable to create task'}`
