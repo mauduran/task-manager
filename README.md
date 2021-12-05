@@ -20,6 +20,9 @@ https://docs.docker.com/compose/install/
 `docker-compose build`
 ### To run
 `docker-compose up`
+
+After all the services are launched  **frontend runs on localhost port 80** and **backend runs on localhost port 3001**
+
 ### To run and build in one command
 `docker-compose up --build`
 ### You can run in background with
