@@ -7,9 +7,12 @@ This web app allows users to manage their tasks. It includes basic user sign up 
 The web app solution is comprised of three docker containers (frontend, backend, database) and the relationship between them is managed using docker compose.
 
 It is important to note that to use docker-compose the Docker Engine and the docker-compose CLI have to be installed.
-
+### To build
+`docker-compose build`
 ### To run
 `docker-compose up`
+### To run and build in one command
+`docker-compose up --build`
 ### You can run in background with
 `docker-compose up -d`
 ### To cleanup
