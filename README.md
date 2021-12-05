@@ -2,6 +2,8 @@
 
 This web app allows users to manage their tasks. It includes basic user sign up and sign in and Get, Post, Put and Delete operations on the tasks.
 
+It is important to note that to use docker-compose the Docker Engine and the docker-compose CLI have to be installed.
+
 ## Running with Docker Compose
 
 The web app solution is comprised of three docker containers (frontend, backend, database) and the relationship between them is managed using docker compose.
@@ -14,7 +16,6 @@ Windows and Mac Os distributions of Docker already include docker-compose. Insta
 
 https://docs.docker.com/compose/install/
 
-It is important to note that to use docker-compose the Docker Engine and the docker-compose CLI have to be installed.
 ### To build
 `docker-compose build`
 ### To run
