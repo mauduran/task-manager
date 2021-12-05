@@ -39,8 +39,7 @@ REST API created in NodeJs to be used as a means of task managements:
 - POST: 
   - **What it does**: Creates a new task
   - **Requires Authorization Token**: YES
-  - **Body**: 
-``` 
+  - **Body**:  ``` 
 { 
   title: string, 
   description: string, 
