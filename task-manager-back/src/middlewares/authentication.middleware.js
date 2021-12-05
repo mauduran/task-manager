@@ -16,6 +16,7 @@ let authMiddleware = async (req, res, next) => {
         throw "token not found";
 
     } catch (error) {
+        console.log(error);
         res.status(401).json({
             error: true,
             message: "Invalid Token!"
