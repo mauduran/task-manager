@@ -4,9 +4,9 @@ WORKDIR /usr/src/task-manager-backend
 
 COPY package*.json ./
 
-COPY  ./ ./
-
 RUN npm install
 
-EXPOSE 3000
+COPY  ./ ./
+
+EXPOSE 3001
 CMD [ "npm", "start" ]
