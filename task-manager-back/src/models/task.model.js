@@ -24,8 +24,8 @@ let TaskSchema = mongoose.Schema({
         require: true,
     },
     comments: {
-        type: [String],
-        default: [],
+        type: String,
+        default: "",
     },
     responsiblePerson: {
         type: String,
