@@ -1,8 +1,6 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const cors = require('cors');
-const swaggerUI = require('swagger-ui-express');
-const swaggerDocs = require('./config/swagger.config');
 const port = process.env.PORT || 3001;
 const morgan = require('morgan');
 const Routes = require('./src/routes/routes');
@@ -21,8 +19,6 @@ app.use(express.json());
 for (const [path, value] of Object.entries(Routes)) {
     app.use(`/api/${path}`, value);
 }
-
-app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.get('/', (req, res) => {
     res.json("All good");
