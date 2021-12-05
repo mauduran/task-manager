@@ -1,5 +1,9 @@
 const jwt = require("jsonwebtoken");
 
+if (process.env.NODE_ENV == 'dev') {
+    require('dotenv').config();
+}
+
 let authMiddleware = async (req, res, next) => {
     const token = req.headers.authorization;
 

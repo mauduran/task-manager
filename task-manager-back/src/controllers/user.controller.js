@@ -2,6 +2,10 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const UserSchema = require("../models/user.model");
 
+if (process.env.NODE_ENV == 'dev') {
+    require('dotenv').config();
+}
+
 class UserController {
     createUser = async (req, res) => {
         let {
