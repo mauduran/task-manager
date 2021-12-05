@@ -8,7 +8,11 @@ REST API created in NodeJs to be used as a means of task managements:
 
 `/user`:
 - POST: 
-  - Register a new user. Returns: Success message if there are no errors or users with 
+  - **What it does**: Registers a new User.
+  - **Body**: 
+  - **Returns**:
+    - F  
+
 - GET: Get list of all users
 
 `/user/login`:
