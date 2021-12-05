@@ -40,14 +40,16 @@ REST API created in NodeJs to be used as a means of task managements:
   - **What it does**: Creates a new task
   - **Requires Authorization Token**: YES
   - **Body**: 
-  ``` { 
-      title: string, 
-      description: string, 
-      dateOfDelivery: Date, 
-      commments: string (Optional), 
-      responsiblePerson: string (Optional),
-      tags: string[] (Optional)
-    } ```
+``` 
+{ 
+  title: string, 
+  description: string, 
+  dateOfDelivery: Date, 
+  commments: string (Optional), 
+  responsiblePerson: string (Optional),
+  tags: string[] (Optional)
+} 
+ ```
   - **Returns**:
-    - 201: When the task was created. Response: `{ success: true, message: "Task created"}` 
-    - 400: With any error such as missing fields. Response: `{success: false, message:'Unable to create task'}`
+    - 201: When the task was created. Response: ` {success: true, message: "Task created"} ` 
+    - 400: With any error such as missing fields. Response: ` {success: false, message:'Unable to create task'} `
