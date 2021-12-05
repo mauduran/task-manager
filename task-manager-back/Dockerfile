@@ -4,8 +4,6 @@ WORKDIR /usr/src/task-manager-backend
 
 COPY package*.json ./
 
-RUN npm install -g nodemon
-
 COPY  ./ ./
 
 RUN npm install
