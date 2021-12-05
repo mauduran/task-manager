@@ -4,6 +4,8 @@ import UserActionTypes from './user.types';
 
 import { signInSuccess, signInFailure, signOutSuccess, signOutFailure, signUpFailure, signUpSuccess } from './user.actions';
 
+import { openErrorNotificationStart } from '../notification/notification.actions';
+
 export function* isUserAuthenticated() {
     try {
         const token = localStorage.getItem("token");
@@ -31,6 +33,7 @@ export function* signIn({ payload: { username, password } }) {
         const responseBody = yield response.json();
 
         if (!responseBody.success) {
+            yield put(openErrorNotificationStart(responseBody.message))
             throw new Error(responseBody.message);
         }
         const { token, username } = responseBody;
@@ -39,6 +42,7 @@ export function* signIn({ payload: { username, password } }) {
 
         yield put(signInSuccess({ token, username }));
     } catch (error) {
+    
         yield put(signInFailure(error));
     }
 }
@@ -65,6 +69,7 @@ export function* signUp({ payload: { name, username, password } }) {
         const responseBody = yield response.json();
 
         if (!responseBody.success) {
+            yield put(openErrorNotificationStart(responseBody.message))
             throw new Error(responseBody.message);
         }
 
