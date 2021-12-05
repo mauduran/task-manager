@@ -6,7 +6,7 @@ REST API created in NodeJs to be used as a means of task managements:
 
 ## User
 
-###`/user`:
+### `/user`:
 - POST: 
   - **What it does**: Registers a new User.
   - **Requires Authorization Token**: No
@@ -24,7 +24,7 @@ REST API created in NodeJs to be used as a means of task managements:
     - 200: When the user was created. Response: `{ success: true, users: List of Users}` 
     - 400: With error. Response: `{success: false, message:'Unable to get users'}`
   
-###`/user/login`:
+### `/user/login`:
 - POST: 
   - **What it does**:Logs a user in
   - **Requires Authorization Token**: No
