@@ -1,4 +1,4 @@
-import { Chip, Fab, Paper, Stack } from '@mui/material'
+import { Button, Chip, Fab, Paper } from '@mui/material'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import CheckIcon from '@mui/icons-material/Check';
@@ -56,25 +56,23 @@ const TaskItem = ({ task, updateTask, deleteTask, openSuccessNotification }) => 
                     <p className={classes.taskItemDescription}>{task.description}</p>
 
                     <div className={classes.tagList}>
-                        {task.tags.map((tag) => <Chip key={tag} label={tag} color="primary" sx={{marginBottom: "5px", marginLeft: "5px"}}/>)}
+                        {task.tags.map((tag) => <Chip key={tag} label={tag} color="primary" sx={{ marginBottom: "5px", marginLeft: "5px" }} />)}
                     </div>
                 </div>
                 <div className={classes.icons}>
-                    <Stack direction="column" spacing={1}>
-                        {
-                            (status === STATUS_TYPES.PENDING || (!status && task.status === STATUS_TYPES.PENDING)) ?
-                                <Fab variant="extended" aria-label="complete" onClick={handleCompleteTask}>
-                                    Set as complete
-                                </Fab> :
-                                <Fab color="primary" aria-label="un complete" onClick={handleUncompleteTask}>
-                                    <CheckIcon />
-                                </Fab>
-                        }
-                        <Fab color="secondary" variant="extended" aria-label="add" onClick={handleDeleteTask}>
-                            <CloseIcon sx={{ mr: 1 }} />
-                            Delete
-                        </Fab>
-                    </Stack>
+                    {
+                        (status === STATUS_TYPES.PENDING || (!status && task.status === STATUS_TYPES.PENDING)) ?
+                            <Button variant="contained" aria-label="complete" size="large" onClick={handleCompleteTask}>
+                                Set as complete
+                            </Button> :
+                            <Fab color="primary" aria-label="un complete" onClick={handleUncompleteTask}>
+                                <CheckIcon />
+                            </Fab>
+                    }
+                    <Button variant="contained" color="secondary" aria-label="add" size="large" onClick={handleDeleteTask}>
+                        <CloseIcon sx={{ mr: 1 }} />
+                        Delete
+                    </Button>
                 </div>
             </div>
 

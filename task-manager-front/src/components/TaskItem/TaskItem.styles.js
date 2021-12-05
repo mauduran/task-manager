@@ -18,6 +18,8 @@ export const useTaskItemStyles = makeStyles((theme) => ({
     taskItemInfo: {
         display: "flex",
         flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%",
         flex: 1,
     },
 
@@ -43,6 +45,7 @@ export const useTaskItemStyles = makeStyles((theme) => ({
         margin: "10px 0",
     },
     taskTitle: {
+        cursor: "pointer",
         width: "100%",
         marginBottom: "5px",
         fontSize: "28px",
@@ -55,7 +58,7 @@ export const useTaskItemStyles = makeStyles((theme) => ({
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-evenly",
+        justifyContent: "space-between",
         paddingLeft: "5px",
         alignItems: "center",
     }
