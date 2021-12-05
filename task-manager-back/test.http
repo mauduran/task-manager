@@ -20,36 +20,40 @@ Content-Type: application/json
     "password": "1234100"
 }
 
-###
+### Get user Tasks (Requires token)
 GET  http://localhost:3001/api/task
 Content-Type: application/json
 Authorization: 
 
-###
+### Get task by Id  (Requires token and that the task belongs to the user)
+GET  http://localhost:3001/api/task/:id
+Content-Type: application/json
+Authorization: 
+
+### Create Task (Requires token)
 POST http://localhost:3001/api/task
 Content-Type: application/json
 Authorization: 
 
 {
-    "title": "documentar backend",
-    "description": "Documentación del back con swagger",
-    "dateOfDelivery": "2021-12-02T17:39:36.610Z",
-    "comments": ["Todo bien"],
+    "title": "Terminar WebApp NextLine",
+    "description": "Documentar frontend y backend de la application de task management de Nextline",
+    "dateOfDelivery": "2021-12-5T17:39:36.610Z",
+    "comments": "Vamos por buen camino",
     "responsiblePerson": "Mau",
     "tags": ["interview", "nextLine"]
 }
 
-###
-PUT http://localhost:3001/api/task/61a9375038ba966224ad30d6
+### Update Task (Requires token and that the task belongs to the user)
+PUT http://localhost:3001/api/task/:id
 Content-Type: application/json
 Authorization: 
 
 {
-    "title": "Terminar frontend",
-    "tags": ["a", "b", "c"]
+    "title": "Terminar WebApp TaskManager"
 }
 
-###
-DELETE   http://localhost:3001/api/task/61a93986b989a6d4967be31a
+### Delete Task (Requires token and that the task belongs to the user)
+DELETE   http://localhost:3001/api/task/:id
 Content-Type: application/json
 Authorization: 
