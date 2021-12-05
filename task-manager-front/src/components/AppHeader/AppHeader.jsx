@@ -26,10 +26,12 @@ const AppHeader = ({ signOut, isLoggedIn }) => {
     return (
         <AppBar color="primary" position="static">
             <Toolbar className={classes.customColor} >
-                <img src={Logo} alt="Nextline-logo" className={classes.logo} />
-                <Typography variant="h6" className={classes.title} >
-                    Task Manager
-                </Typography>
+                <div className={classes.websiteName} onClick={()=>navigate("/")}>
+                    <img src={Logo} alt="Nextline-logo" className={classes.logo} />
+                    <Typography variant="h6" className={classes.title} >
+                        Task Manager
+                    </Typography>
+                </div>
                 {
                     isLoggedIn ?
                         <Button variant="text" onClick={handleLogout} className={classes.button}>Sign Out</Button> :

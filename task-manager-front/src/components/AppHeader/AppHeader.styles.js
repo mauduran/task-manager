@@ -4,6 +4,11 @@ export const useHeaderStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: 10
     },
+    websiteName: {
+        display: "flex",
+        cursor: "pointer",
+        flexGrow: 1,
+    },
     title: {
         flexGrow: 1,
         textAlign: "left"
