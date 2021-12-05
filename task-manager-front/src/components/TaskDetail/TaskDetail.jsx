@@ -9,10 +9,12 @@ import { fetchTaskByIdStart, updateTaskStart } from '../../redux/task/task.actio
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentTask } from '../../redux/task/task.selectors';
+import { useNavigate } from 'react-router';
 
 const TaskDetail = ({ fetchTask, deleteTask, updateTask, openSuccessNotification, task, fetchError }) => {
     const [status, setStatus] = useState(STATUS_TYPES.PENDING);
     const classes = useTaskDetailStyles();
+    const navigate = useNavigate();
 
     const handleCompleteTask = () => {
         updateTask(task._id, { status: STATUS_TYPES.COMPLETED }, () => {
@@ -46,28 +48,35 @@ const TaskDetail = ({ fetchTask, deleteTask, updateTask, openSuccessNotification
         return <h1>Unable to get task at this moment.</h1>
     } else if (task) {
         return (
-            <Paper className={classes.TaskDetailContainer} elevation={24}>
-                <div className={classes.header}>
-                    <h1>Task Detail </h1>
-                    <div className={classes.icons}>
-                        {
-                            (status === STATUS_TYPES.PENDING) ?
-                                <Button variant="contained" aria-label="complete" onClick={handleCompleteTask}>
-                                    Set as complete
-                                </Button> :
-                                <Fab color="primary" variant="contained" aria-label="un complete" onClick={handleUncompleteTask}>
-                                    <CheckIcon />
-                                </Fab>
-                        }
-
-                        <Button color="secondary" variant="contained" aria-label="add" onClick={handleDeleteTask}>
-                            <CloseIcon sx={{ mr: 1 }} />
-                            Delete
-                        </Button>
-                    </div>
+            <>
+                <div className={classes.BackButton}>
+                    <Button variant="contained" color="secondary" size="large" style={{backgroundColor: "black"}} aria-label="back" onClick={()=>navigate("/")}>
+                        Back
+                    </Button>
                 </div>
-                <TaskDetailForm task={task} onSubmitFn={updateTaskValues} submitBtnTitle="Update Task" />
-            </Paper>
+                <Paper className={classes.TaskDetailContainer} elevation={24}>
+                    <div className={classes.header}>
+                        <h1>Task Detail </h1>
+                        <div className={classes.icons}>
+                            {
+                                (status === STATUS_TYPES.PENDING) ?
+                                    <Button variant="contained" aria-label="complete" onClick={handleCompleteTask}>
+                                        Set as complete
+                                    </Button> :
+                                    <Fab color="primary" variant="contained" aria-label="un complete" onClick={handleUncompleteTask}>
+                                        <CheckIcon />
+                                    </Fab>
+                            }
+
+                            <Button color="secondary" variant="contained" aria-label="add" onClick={handleDeleteTask}>
+                                <CloseIcon sx={{ mr: 1 }} />
+                                Delete
+                            </Button>
+                        </div>
+                    </div>
+                    <TaskDetailForm task={task} onSubmitFn={updateTaskValues} submitBtnTitle="Update Task" />
+                </Paper>
+            </>
         )
     }
     return null;

@@ -1,4 +1,4 @@
-import { Paper } from '@mui/material'
+import { Button, Paper } from '@mui/material'
 import React from 'react'
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -8,7 +8,7 @@ import { openSuccessNotificationStart } from '../../redux/notification/notificat
 import { createTaskStart } from '../../redux/task/task.actions';
 import { useCreateTaskPageStyles } from './CreateTaskPage.styles'
 
-const CreateTaskPage = ({createTask, openSuccessNotification}) => {
+const CreateTaskPage = ({ createTask, openSuccessNotification }) => {
     const classes = useCreateTaskPageStyles();
     const navigate = useNavigate();
 
@@ -22,16 +22,23 @@ const CreateTaskPage = ({createTask, openSuccessNotification}) => {
     }
 
     const createNewTaskFn = (task) => {
-        createTask(task) 
+        createTask(task)
         openSuccessNotification("Task Created");
         navigate("/");
     }
 
     return (
-        <Paper className={classes.CreateTaskContainer} elevation={24}>
-            <h1>Create new Task</h1>
-            <CreateTaskContainer task={emptyTask} onSubmitFn={createNewTaskFn} submitBtnTitle="Create Task" />
-        </Paper >
+        <>
+            <div className={classes.BackButton}>
+                <Button variant="contained" color="secondary" size="large" style={{ backgroundColor: "black" }} aria-label="back" onClick={() => navigate("/")}>
+                    Back
+                </Button>
+            </div>
+            <Paper className={classes.CreateTaskContainer} elevation={24}>
+                <h1>Create new Task</h1>
+                <CreateTaskContainer task={emptyTask} onSubmitFn={createNewTaskFn} submitBtnTitle="Create Task" />
+            </Paper >
+        </>
     )
 }
 

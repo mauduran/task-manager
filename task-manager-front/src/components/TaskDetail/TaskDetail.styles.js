@@ -5,7 +5,7 @@ export const useTaskDetailStyles = makeStyles((theme) => ({
         padding: "15px 30px",
         width: "70%",
         minWidth: "470px",
-        margin: "60px auto",
+        margin: "20px auto",
         height: "calc(100% - 120px)",
         overflowX: "scroll",
     },
@@ -23,4 +23,7 @@ export const useTaskDetailStyles = makeStyles((theme) => ({
     header: {
         display: "flex"
     },
+    BackButton: {
+        margin: "10px 0 0 10%",
+    }
 }));
