@@ -1,8 +1,8 @@
 import TaskActionTypes from './task.types';
 
-export const createTaskStart = (task) => ({
+export const createTaskStart = (task, cbSuccess) => ({
     type: TaskActionTypes.CREATE_TASK_START,
-    payload: task,
+    payload: {task, cbSuccess},
 })
 
 export const createTaskSuccess = (response) => ({
@@ -59,7 +59,7 @@ export const updateTasksFailure = (error) => ({
     payload: error,
 });
 
-export const deleteTasksStart = (id) => ({
+export const deleteTasksStart = (id, cbSuccess) => ({
     type: TaskActionTypes.DELETE_TASK_START,
     payload: { id },
 })

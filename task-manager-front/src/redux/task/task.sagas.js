@@ -40,9 +40,9 @@ export function* fetchUserTasks() {
     }
 }
 
-export function* fetchTaskById({ payload: { id } }) {
+export function* fetchTaskById({ payload }) {
     try {
-        const response = yield fetch(`/task/${id}`, {
+        const response = yield fetch(`/task/${payload}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export function* fetchTaskById({ payload: { id } }) {
     }
 }
 
-export function* createTask({ payload }) {
+export function* createTask({ payload: {task, cbSuccess} }) {
     try {
         const response = yield fetch(`/task`, {
             method: 'POST',
@@ -71,7 +71,7 @@ export function* createTask({ payload }) {
                 'Content-Type': 'application/json',
                 'Authorization': localStorage.getItem("token"),
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(task)
         })
 
         const responseBody = yield response.json();
@@ -80,6 +80,7 @@ export function* createTask({ payload }) {
             throw new Error(responseBody.message);
         }
 
+        cbSuccess();
         yield put(createTaskSuccess(responseBody));
 
     } catch (error) {
@@ -87,7 +88,7 @@ export function* createTask({ payload }) {
     }
 }
 
-export function* deleteTask({ payload: { id } }) {
+export function* deleteTask({ payload: { id, cbSuccess } }) {
     try {
         const response = yield fetch(`/task/${id}`, {
             method: 'DELETE',
@@ -119,11 +120,13 @@ export function* updateTask({ payload: { id, task, cbSuccess } }) {
             },
             body: JSON.stringify(task)
         })
+        console.log(task);
         const responseBody = yield response.json();
 
         if (!responseBody.success) {
             throw new Error(responseBody.message);
         }
+
         yield call(cbSuccess);
 
         yield put(updateTasksSuccess(responseBody));
