@@ -5,7 +5,7 @@ The design framework used and followed is material and redux is used for state m
 
 ## Pages
 - **Sign In / Sign Up**: `/signin` - Used to create account or login.
-- **Home**: '/' - Shows all existing tasks. Allows for completion and deletion of tasks.
+- **Home**: `/` - Shows all existing tasks. Allows for completion and deletion of tasks.
 - **Task Detail**: `/task/:id` - Allows user to see all information for a task and also update it.
 - **Create Task**: `/new-task` - Form that allows user to create a new task.
 
