@@ -66,7 +66,7 @@ const TaskDetail = ({ fetchTask, deleteTask, updateTask, openSuccessNotification
                         </Button>
                     </div>
                 </div>
-                <TaskDetailForm task={task} onSubmitFn={updateTaskValues} />
+                <TaskDetailForm task={task} onSubmitFn={updateTaskValues} submitBtnTitle="Update Task" />
             </Paper>
         )
     }

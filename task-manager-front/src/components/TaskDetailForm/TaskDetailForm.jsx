@@ -5,7 +5,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 
-const TaskDetailForm = ({ task, onSubmitFn }) => {
+const TaskDetailForm = ({ task, onSubmitFn, submitBtnTitle }) => {
     const [taskValues, setTaskValues] = useState(task);
     const [tagInputVal, setTagInputVal] = useState("");
     const classes = useTaskDetailFormStyles();
@@ -128,7 +128,7 @@ const TaskDetailForm = ({ task, onSubmitFn }) => {
 
             <div className={classes.submitBtn}>
                 <Button type="submit" variant="contained" size="large">
-                    Update Task
+                    {submitBtnTitle}
                 </Button>
             </div>
 

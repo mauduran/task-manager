@@ -30,7 +30,7 @@ const CreateTaskPage = ({createTask, openSuccessNotification}) => {
     return (
         <Paper className={classes.CreateTaskContainer} elevation={24}>
             <h1>Create new Task</h1>
-            <CreateTaskContainer task={emptyTask} onSubmitFn={createNewTaskFn} />
+            <CreateTaskContainer task={emptyTask} onSubmitFn={createNewTaskFn} submitBtnTitle="Create Task" />
         </Paper >
     )
 }
