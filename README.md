@@ -10,7 +10,8 @@ The web app solution is comprised of three docker containers (frontend, backend,
 https://docs.docker.com/get-docker/
 
 ### Install Docker-Compose
-Windows and Mac Os distributions of Docker already include
+Windows and Mac Os distributions of Docker already include docker-compose. Installation information can be read here:
+
 https://docs.docker.com/compose/install/
 
 It is important to note that to use docker-compose the Docker Engine and the docker-compose CLI have to be installed.
