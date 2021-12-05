@@ -1,0 +1,12 @@
+import { makeStyles } from '@mui/styles';
+
+export const useCreateTaskPageStyles = makeStyles((theme) => ({
+    CreateTaskContainer: {
+        padding: "15px 30px",
+        width: "70%",
+        minWidth: "470px",
+        margin: "60px auto",
+        height: "calc(100% - 120px)",
+        overflowX: "scroll",
+    },
+}));
