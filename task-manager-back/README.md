@@ -113,6 +113,7 @@ List of constants to be used in the code to avoid typos.
 ### Controllers
 Files in charge of implementing the core logic of the endpoints.
 Each file defines a function for each endpoint to be used.
+
 **Current controllers**:
 - `user.controller.js`
 - `task.controller.js`
@@ -120,12 +121,14 @@ Each file defines a function for each endpoint to be used.
 ### Routes
 Files that define the paths and methods of the endpoints.
 Routes leverage the functions implemented on the controller files to keep the files clean.
+
 **Current routes**
 - `user.routes.js`
 - `task.routes.js`
 
 ### Middlewares
 Files that do some treatment on the incoming requests before or after the controller function is executed.
+
 **Current middlewares**
 - `authentication.middleware.js`
 - `validateLoginBody.middleware.js`
@@ -135,6 +138,7 @@ Files that do some treatment on the incoming requests before or after the contro
 ### Models
 Files that define the data model for objects to be stored in the MongoDB store.
 Defines attributes, data types and form of the data.
+
 **Current models**
 - `task.model.js`
 - `user.model.js`
